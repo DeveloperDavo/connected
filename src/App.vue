@@ -10,12 +10,14 @@
 <script>
 export default {
   name: "app",
-  data: () => ({
-    actions: [
-      { type: "lock", time: 1557945949433, status: "COMPLETE" },
-      { type: "unlock", time: 1557945991480, status: "PENDING" }
-    ]
-  })
+  data() {
+    return {
+      actions: [
+        { type: "lock", time: 1557945949433, status: "COMPLETE" },
+        { type: "unlock", time: 1557945991480, status: "PENDING" }
+      ]
+    };
+  }
 };
 </script>
 
