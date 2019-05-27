@@ -8,15 +8,15 @@
 </template>
 
 <script>
+import getActions from "./actionsClient";
+
 export default {
   name: "app",
   data() {
-    return {
-      actions: [
-        { type: "lock", time: 1557945949433, status: "COMPLETE" },
-        { type: "unlock", time: 1557945991480, status: "PENDING" }
-      ]
-    };
+    return { actions: [] };
+  },
+  mounted() {
+    this.actions = getActions();
   }
 };
 </script>
