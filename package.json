@@ -5,6 +5,7 @@
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "deploy": "npm test && npm run build",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service test:unit",
     "watch": "vue-cli-service test:unit --watch"
