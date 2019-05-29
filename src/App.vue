@@ -4,7 +4,7 @@
     <ul>
       <li v-for="action in actions" v-bind:key="action.time">
         <div class="column">{{ action.type }}</div>
-        <div class="column">{{ action.time }}</div>
+        <div class="column">{{ formatDate(action.time) }}</div>
         <div class="column">{{ action.status }}</div>
       </li>
     </ul>
@@ -13,6 +13,7 @@
 
 <script>
 import getActions from "./actionsClient";
+import moment from "moment";
 
 export default {
   name: "app",
@@ -21,6 +22,11 @@ export default {
   },
   mounted() {
     this.actions = getActions();
+  },
+  methods: {
+    formatDate(time) {
+      return moment(time).calendar();
+    }
   }
 };
 </script>

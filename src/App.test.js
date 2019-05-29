@@ -1,8 +1,11 @@
 import { mount } from "@vue/test-utils";
+import moment from "moment";
+
 import App from "./App";
 import getActions from "./actionsClient";
 
 jest.mock("./actionsClient");
+jest.mock("moment");
 
 describe("App", () => {
   const data = [
@@ -13,6 +16,7 @@ describe("App", () => {
 
   beforeEach(() => {
     getActions.mockReturnValue(data);
+    moment.mockReturnValue({ calendar: jest.fn() });
   });
 
   it("displays all rows", async () => {
@@ -23,9 +27,15 @@ describe("App", () => {
 
   describe("columns", async () => {
     let columns;
+    let calendar;
 
     beforeEach(async () => {
+      moment.mockReset();
+      calendar = jest.fn();
+      moment.mockReturnValue({ calendar });
+
       const wrapper = await mount(App);
+
       columns = wrapper.find("li").findAll(".column");
     });
 
@@ -33,8 +43,9 @@ describe("App", () => {
       expect(columns.at(0).text()).toBe("UNLOCK");
     });
 
-    it("display time", async () => {
-      expect(columns.at(1).text()).toBe("1558985077355");
+    it("displays formatted date", async () => {
+      expect(moment).toHaveBeenCalledWith(1558985077355);
+      expect(calendar).toHaveBeenCalled();
     });
 
     it("display status", async () => {
