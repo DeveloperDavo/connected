@@ -7,6 +7,7 @@
     "build": "vue-cli-service build",
     "deploy": "npm test && npm run build",
     "lint": "vue-cli-service lint",
+    "pretest": "npm run lint",
     "test": "vue-cli-service test:unit",
     "watch": "vue-cli-service test:unit --watch"
   },
