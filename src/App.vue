@@ -2,7 +2,11 @@
   <div class="app">
     <h2>Actions</h2>
     <ul>
-      <li v-for="action in actions" v-bind:key="action.time">{{ action.type }}</li>
+      <li v-for="action in actions" v-bind:key="action.time">
+        <div class="column">{{ action.type }}</div>
+        <div class="column">{{ action.time }}</div>
+        <div class="column">{{ action.status }}</div>
+      </li>
     </ul>
   </div>
 </template>
@@ -38,11 +42,15 @@ li:first-child {
 li {
   list-style: none;
   position: relative;
-  display: block;
+  display: flex;
   padding: 0.75rem 1.25rem;
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.column {
+  flex: 1;
 }
 
 li:last-child {
