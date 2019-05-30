@@ -48,15 +48,31 @@ li:first-child {
 li {
   list-style: none;
   position: relative;
-  display: flex;
   padding: 0.75rem 1.25rem;
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
+@media (min-width: 600px) {
+  li {
+    display: flex;
+  }
+}
+
 .column {
+  margin-left: 1rem;
   flex: 1;
+  padding: 0.25rem;
+}
+
+@media (min-width: 600px) {
+  .column {
+    padding: 0;
+  }
+  .column:first-child {
+    margin-left: 0;
+  }
 }
 
 li:last-child {
