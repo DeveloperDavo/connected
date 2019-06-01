@@ -20,8 +20,8 @@ export default {
   data() {
     return { actions: [] };
   },
-  mounted() {
-    this.actions = getActions();
+  async mounted() {
+    this.actions = await getActions();
   },
   methods: {
     formatDate(time) {
