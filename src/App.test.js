@@ -23,6 +23,16 @@ describe("App", () => {
     const wrapper = await await await mount(App);
 
     expect(wrapper.findAll("li").length).toBe(3);
+    expect(wrapper.findAll(".error").length).toBe(0);
+  });
+
+  it("displays error message when fetching actions fails", async () => {
+    getActions.mockRejectedValue("Failed to fetch");
+
+    const wrapper = await await await mount(App);
+
+    expect(wrapper.findAll("ul").length).toBe(0);
+    expect(wrapper.find(".error").text()).toBe("Oops! Something went wrong.");
   });
 
   describe("columns", async () => {

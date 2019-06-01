@@ -1,7 +1,8 @@
 <template>
   <div class="app">
     <h2>Actions</h2>
-    <ul>
+    <p v-if="error" class="error">Oops! Something went wrong.</p>
+    <ul v-else>
       <li v-for="action in actions" v-bind:key="action.time">
         <div class="column">{{ action.type }}</div>
         <div class="column">{{ formatDate(action.time) }}</div>
@@ -18,10 +19,14 @@ import moment from "moment";
 export default {
   name: "app",
   data() {
-    return { actions: [] };
+    return { actions: [], error: false };
   },
   async mounted() {
-    this.actions = await getActions();
+    try {
+      this.actions = await getActions();
+    } catch {
+      this.error = true;
+    }
   },
   methods: {
     formatDate(time) {
