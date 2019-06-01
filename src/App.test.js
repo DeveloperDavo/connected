@@ -24,6 +24,7 @@ describe("App", () => {
 
     expect(wrapper.findAll("li").length).toBe(3);
     expect(wrapper.findAll(".error").length).toBe(0);
+    expect(wrapper.findAll(".empty").length).toBe(0);
   });
 
   it("displays error message when fetching actions fails", async () => {
@@ -32,7 +33,18 @@ describe("App", () => {
     const wrapper = await await await mount(App);
 
     expect(wrapper.findAll("ul").length).toBe(0);
+    expect(wrapper.findAll(".empty").length).toBe(0);
     expect(wrapper.find(".error").text()).toBe("Oops! Something went wrong.");
+  });
+
+  it("displays message when there are no actions", async () => {
+    getActions.mockResolvedValue([]);
+
+    const wrapper = await await await mount(App);
+
+    expect(wrapper.findAll("ul").length).toBe(0);
+    expect(wrapper.findAll(".error").length).toBe(0);
+    expect(wrapper.find(".empty").text()).toBe("Nothing to see here.");
   });
 
   describe("columns", async () => {
